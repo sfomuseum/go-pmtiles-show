@@ -1,0 +1,47 @@
+package show
+
+import (
+	"context"
+	"flag"
+	"fmt"
+
+	"github.com/sfomuseum/go-flags/flagset"
+	www_show "github.com/sfomuseum/go-www-show/v2"
+)
+
+type RunOptions struct {
+	MapProvider       string
+	MapTileURI        string
+	InitialView       string
+	LeafletStyle      string
+	LeafletPointStyle string
+	ProtomapsTheme    string
+	Port              int
+	Browser           www_show.Browser
+	Verbose           bool
+}
+
+func RunOptionsFromFlagSet(ctx context.Context, fs *flag.FlagSet) (*RunOptions, error) {
+
+	flagset.Parse(fs)
+
+	opts := &RunOptions{
+		MapProvider:       map_provider,
+		MapTileURI:        map_tile_uri,
+		LeafletStyle:      leaflet_style,
+		LeafletPointStyle: leaflet_point_style,
+		ProtomapsTheme:    protomaps_theme,
+		Port:              port,
+		Verbose:           verbose,
+	}
+
+	br, err := www_show.NewBrowser(ctx, browser_uri)
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to create new browser, %w", err)
+	}
+
+	opts.Browser = br
+
+	return opts, nil
+}
