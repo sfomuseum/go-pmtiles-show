@@ -1,3 +1,5 @@
+// import { PMTiles, leafletRasterLayer } from 'pmtiles';
+
 window.addEventListener("load", function load(event){
 
     // Null Island    
@@ -90,8 +92,6 @@ window.addEventListener("load", function load(event){
 
 	fetch_site_config().then((site_cfg) => {
 
-	    console.log("SITE", site_cfg);
-
             var base_maps = {};
             var overlays = {};
 
@@ -105,23 +105,18 @@ window.addEventListener("load", function load(event){
 		})
 		
 		tile_layer.addTo(map);
-		console.log("WTF", label, tile_url, tile_layer);
-		
 		base_maps[label] = tile_layer;
 	    }
 
-	    /*
 	    for (label in site_cfg.raster_layers){
 
-		import { PMTiles, leafletRasterLayer } from 'pmtiles';
-
+		var tile_url = site_cfg.raster_layers[label];
 		console.log("RASTER", label, tile_url);
 		
-		const p = new PMTiles(tile_url);
-		const tile_later = leafletRasterLayer(p);
+		const p = new pmtiles.PMTiles(tile_url);
+		const tile_layer = pmtiles.leafletRasterLayer(p);
 		tile_layer.addTo(map)		
 	    }
-	     */
 	    
             // var layerControl = L.control.layers(base_maps, overlays);
             // layerControl.addTo(map);
