@@ -52,37 +52,39 @@ func RunWithOptions(ctx context.Context, opts *RunOptions) error {
 		return fmt.Errorf("Failed to assign map config handler, %w", err)
 	}
 
+	//
+
 	cfg := &Config{
-		RasterLayers: opts.RasterLayers,
-		VectorLayers: opts.VectorLayers,
+		RasterLayers: make(map[string]string),
+		VectorLayers: make(map[string]string),
+	}
+
+	for label, path := range opts.RasterLayers {
+
+		mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
+
+		if err != nil {
+			return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
+		}
+
+		mux.Handle(mux_url, mux_handler)
+		cfg.RasterLayers[label] = mux_url
+	}
+
+	for label, path := range opts.VectorLayers {
+
+		mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
+
+		if err != nil {
+			return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
+		}
+
+		mux.Handle(mux_url, mux_handler)
+		cfg.VectorLayers[label] = mux_url
 	}
 
 	cfg_handler := ConfigHandler(cfg)
 	mux.Handle("/config.json", cfg_handler)
-
-	//
-
-	for _, path := range opts.RasterLayers {
-
-		mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
-
-		if err != nil {
-			return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
-		}
-
-		mux.Handle(mux_url, mux_handler)
-	}
-
-	for _, path := range opts.VectorLayers {
-
-		mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
-
-		if err != nil {
-			return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
-		}
-
-		mux.Handle(mux_url, mux_handler)
-	}
 
 	//
 

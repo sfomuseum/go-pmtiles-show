@@ -56,7 +56,26 @@ window.addEventListener("load", function load(event){
 			    return;
 		    }
 		    
-		    // To do: Set bounding box from configs (if defined)
+		    if (cfg.initial_view) {
+			
+			var zm = map.getZoom();
+			
+			if (cfg.initial_zoom){
+			    zm = cfg.initial_zoom;
+			}
+			
+			map.setView([cfg.initial_view[1], cfg.initial_view[0]], zm);
+			
+		    } else if (cfg.initial_bounds){
+			
+			var bounds = [
+			    [ cfg.initial_bounds[1], cfg.initial_bounds[0] ],
+			    [ cfg.initial_bounds[3], cfg.initial_bounds[2] ],
+			];
+			
+			map.fitBounds(bounds);
+		    }
+		    
 		    resolve(cfg);
 		    
 		}).catch((err) => {
@@ -72,6 +91,40 @@ window.addEventListener("load", function load(event){
 	fetch_site_config().then((site_cfg) => {
 
 	    console.log("SITE", site_cfg);
+
+            var base_maps = {};
+            var overlays = {};
+
+	    for (label in site_cfg.vector_layers) {
+
+		var tile_url = site_cfg.vector_layers[label];
+
+		var tile_layer = protomapsL.leafletLayer({
+                    url: tile_url,
+		    theme: 'light',
+		})
+		
+		tile_layer.addTo(map);
+		console.log("WTF", label, tile_url, tile_layer);
+		
+		base_maps[label] = tile_layer;
+	    }
+
+	    /*
+	    for (label in site_cfg.raster_layers){
+
+		import { PMTiles, leafletRasterLayer } from 'pmtiles';
+
+		console.log("RASTER", label, tile_url);
+		
+		const p = new PMTiles(tile_url);
+		const tile_later = leafletRasterLayer(p);
+		tile_layer.addTo(map)		
+	    }
+	     */
+	    
+            // var layerControl = L.control.layers(base_maps, overlays);
+            // layerControl.addTo(map);
 	    
 	}).catch((err) => {
 	    console.error("Failed to fetch site config", err);
