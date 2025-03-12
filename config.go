@@ -21,7 +21,7 @@ func ConfigHandler(cfg *Config) http.Handler {
 		err := enc.Encode(cfg)
 
 		if err != nil {
-			slog.Error("Failed to encode map config", "error", err)
+			slog.Error("Failed to encode site config", "error", err)
 			http.Error(rsp, "Internal server error", http.StatusInternalServerError)
 		}
 

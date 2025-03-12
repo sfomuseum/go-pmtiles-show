@@ -60,6 +60,32 @@ func RunWithOptions(ctx context.Context, opts *RunOptions) error {
 	cfg_handler := ConfigHandler(cfg)
 	mux.Handle("/config.json", cfg_handler)
 
+	//
+
+	for _, path := range opts.RasterLayers {
+
+		mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
+
+		if err != nil {
+			return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
+		}
+
+		mux.Handle(mux_url, mux_handler)
+	}
+
+	for _, path := range opts.VectorLayers {
+
+		mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
+
+		if err != nil {
+			return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
+		}
+
+		mux.Handle(mux_url, mux_handler)
+	}
+
+	//
+
 	www_fs := http.FS(www.FS)
 	mux.Handle("/", http.FileServer(www_fs))
 

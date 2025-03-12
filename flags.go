@@ -44,6 +44,9 @@ func DefaultFlagSet() *flag.FlagSet {
 	fs.StringVar(&leaflet_point_style, "leaflet_point_style", "", "A custom Leaflet style definition for points. This may either be a JSON-encoded string or a path on disk.")
 	fs.StringVar(&initial_view, "initial-view", "", "A comma-separated string indicating the map's initial view. Valid options are: 'LON,LAT', 'LON,LAT,ZOOM' or 'MINX,MINY,MAXX,MAXY'.")
 
+	fs.Var(&raster_tiles, "raster", "Zero or more {LAYER_NAME}={PATH} pairs referencing PMTiles databases containing raster data.")
+	fs.Var(&vector_tiles, "vector", "Zero or more {LAYER_NAME}={PATH} pairs referencing PMTiles databases containing vector (MVT) data.")
+
 	fs.IntVar(&port, "port", 0, "The port number to listen for requests on (on localhost). If 0 then a random port number will be chosen.")
 
 	fs.BoolVar(&verbose, "verbose", false, "Enable verbose (debug) logging.")

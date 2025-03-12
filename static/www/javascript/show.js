@@ -7,7 +7,7 @@ window.addEventListener("load", function load(event){
 
 	return new Promise((resolve, reject) => {
 
-	    fetch("/map.json")
+	    fetch("/config.json")
 		.then((rsp) => rsp.json())
 		.then((cfg) => {
 		    resolve(cfg);
