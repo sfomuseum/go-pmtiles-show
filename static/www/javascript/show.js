@@ -111,15 +111,16 @@ window.addEventListener("load", function load(event){
 	    for (label in site_cfg.raster_layers){
 
 		var tile_url = site_cfg.raster_layers[label];
-		console.log("RASTER", label, tile_url);
 		
 		const p = new pmtiles.PMTiles(tile_url);
 		const tile_layer = pmtiles.leafletRasterLayer(p);
-		tile_layer.addTo(map)		
+		
+		tile_layer.addTo(map);
+		base_maps[label] = tile_layer;		
 	    }
 	    
-            // var layerControl = L.control.layers(base_maps, overlays);
-            // layerControl.addTo(map);
+            var layerControl = L.control.layers(base_maps, overlays);
+            layerControl.addTo(map);
 	    
 	}).catch((err) => {
 	    console.error("Failed to fetch site config", err);
