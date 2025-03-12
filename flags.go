@@ -8,6 +8,7 @@ import (
 
 	"github.com/aaronland/go-http-maps/v2"
 	"github.com/sfomuseum/go-flags/flagset"
+	"github.com/sfomuseum/go-flags/multi"
 	"github.com/sfomuseum/go-www-show/v2"
 )
 
@@ -22,6 +23,9 @@ var map_tile_uri string
 var protomaps_theme string
 var leaflet_style string
 var leaflet_point_style string
+
+var raster_tiles multi.KeyValueString
+var vector_tiles multi.KeyValueString
 
 func DefaultFlagSet() *flag.FlagSet {
 

@@ -16,6 +16,8 @@ type RunOptions struct {
 	LeafletStyle      string
 	LeafletPointStyle string
 	ProtomapsTheme    string
+	RasterLayers      map[string]string `json:"raster_layers,omitempty"`
+	VectorLayers      map[string]string `json:"vector_layers,omitempty"`
 	Port              int
 	Browser           www_show.Browser
 	Verbose           bool

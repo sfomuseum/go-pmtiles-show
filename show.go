@@ -52,6 +52,14 @@ func RunWithOptions(ctx context.Context, opts *RunOptions) error {
 		return fmt.Errorf("Failed to assign map config handler, %w", err)
 	}
 
+	cfg := &Config{
+		RasterLayers: opts.RasterLayers,
+		VectorLayers: opts.VectorLayers,
+	}
+
+	cfg_handler := ConfigHandler(cfg)
+	mux.Handle("/config.json", cfg_handler)
+
 	www_fs := http.FS(www.FS)
 	mux.Handle("/", http.FileServer(www_fs))
 
