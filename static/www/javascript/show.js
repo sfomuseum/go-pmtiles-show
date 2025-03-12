@@ -99,9 +99,66 @@ window.addEventListener("load", function load(event){
 
 		var tile_url = site_cfg.vector_layers[label];
 
+		/*
+		let PAINT_RULES = [
+		    {
+			dataLayer:"water",
+			symbolizer:new protomapsL.PolygonSymbolizer({fill:"#354855"})
+		    },
+		    {
+			dataLayer: "roads",
+			symbolizer: new protomapsL.LineSymbolizer({color:"#fff"}),
+		    },
+		    {
+			dataLayer: "landuse",
+			symbolizer:new protomapsL.PolygonSymbolizer({fill:"#cccccc"})
+		    },
+		    {
+			dataLayer: "landuse",
+			symbolizer:new protomapsL.PolygonSymbolizer({fill:"#999"}),
+			filter: (props, ignore) => {
+			    
+			    if (props["area:aeroway"] == "runway"){
+				return true;
+			    }
+			    
+			    if (props["area:aeroway"] == "taxiway"){
+				return true;
+			    }
+			    
+			    if (props["aeroway"] == "runway"){
+				return true;
+			    }
+			    
+			    if (props["aeroway"] == "aerodrome"){
+				return true;
+			    }
+			    
+			    return false;
+			}
+		    },
+		    {
+			dataLayer: "transit",
+			symbolizer: new protomapsL.LineSymbolizer({color:"#000"}),
+			filter: (props, ignore) => {
+			    
+			    if (props["pmap:kind"] = "aeroway"){
+				return true;
+			    }
+			    
+			    return false;
+			}
+		    }
+		];
+
+		let LABEL_RULES = [];
+		 */
+		
 		var tile_layer = protomapsL.leafletLayer({
                     url: tile_url,
 		    theme: 'light',
+		    // paintRules:PAINT_RULES,
+		    // labelRules:LABEL_RULES,
 		})
 		
 		tile_layer.addTo(map);
