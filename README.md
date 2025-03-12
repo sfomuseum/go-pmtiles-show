@@ -8,6 +8,10 @@ It's basically a simpler and dumber version of [geojson.io](https://geojson.io/)
 
 Have a look at the [Small focused tools for visualizing geographic data](https://millsfield.sfomuseum.org/blog/2024/10/02/show/) blog post for more background.
 
+## Important
+
+This basically works but isn't quite finished yet.
+
 ## Documentation
 
 Documentation (`godoc`) is incomplete at this time.
@@ -48,7 +52,7 @@ Valid options are:
   -port int
     	The port number to listen for requests on (on localhost). If 0 then a random port number will be chosen.
   -protomaps-theme string
-    	A valid Protomaps theme label. (default "white")
+    	A valid Protomaps theme label (for the base map not individual PMTiles databases). (default "white")
   -raster value
     	Zero or more {LAYER_NAME}={PATH} pairs referencing PMTiles databases containing raster data.
   -vector value
