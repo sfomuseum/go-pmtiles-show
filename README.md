@@ -8,10 +8,6 @@ It's basically a simpler and dumber version of [geojson.io](https://geojson.io/)
 
 Have a look at the [Small focused tools for visualizing geographic data](https://millsfield.sfomuseum.org/blog/2024/10/02/show/) blog post for more background.
 
-## Important
-
-This basically works but isn't quite finished yet.
-
 ## Documentation
 
 Documentation (`godoc`) is incomplete at this time.
@@ -61,7 +57,7 @@ Valid options are:
     	Enable verbose (debug) logging.
 ```	
 
-#### Example
+#### Example (raster)
 
 ```
 $> ./bin/show \
@@ -73,8 +69,25 @@ $> ./bin/show \
 
 Which, when you open `http://localhost:52722` in your web browser, would yield this:
 
-![](docs/images/go-pmtiles-show.png)
+![](docs/images/go-pmtiles-show-raster.png)
+
+#### Example (vector)
+
+```
+$> ./bin/show \
+		-initial-view -122.408061,37.601617,-122.354907,37.640167 \
+		-vector sfo=fixtures/sfo.pmtiles
+
+2025/03/18 08:09:11 INFO Server is ready and features are viewable url=http://localhost:62411
+```
+
+Which, when you open `http://localhost:52722` in your web browser, would yield this:
+
+![](docs/images/go-pmtiles-show-vector.png)
+
+As of this writing there is only a single default style for (PMTiles) vector layers. It is [a fork](https://github.com/sfomuseum/protomaps-leaflet) of the default `light` style which has been updated to have a transparent background for areas where there is no tile data. The determination of which areas are considered to have tile data, as seen in the screenshot above, is determined by Protomaps and changes depending on the zoom level.
 
 ## See also
 
 * https://github.com/sfomuseum/go-www-show
+* https://github.com/sfomuseum/protomaps-leaflet
