@@ -8,10 +8,6 @@ It's basically a simpler and dumber version of [geojson.io](https://geojson.io/)
 
 Have a look at the [Small focused tools for visualizing geographic data](https://millsfield.sfomuseum.org/blog/2024/10/02/show/) blog post for more background.
 
-## Important
-
-This basically works but isn't quite finished yet.
-
 ## Documentation
 
 Documentation (`godoc`) is incomplete at this time.
@@ -89,8 +85,9 @@ Which, when you open `http://localhost:52722` in your web browser, would yield t
 
 ![](docs/images/go-pmtiles-show-vector.png)
 
-As of this writing there is only a single default style for (PMTiles) vector layers. It is [a fork](https://github.com/sfomuseum/protomaps-leaflet) of the default `light` style that has been updated to have a transparent background for areas where there is no tile data. 
+As of this writing there is only a single default style for (PMTiles) vector layers. It is [a fork](https://github.com/sfomuseum/protomaps-leaflet) of the default `light` style which has been updated to have a transparent background for areas where there is no tile data. The determination of which areas are considered to have tile data, as seen in the screenshot above, is determined by Protomaps and changes depending on the zoom level.
 
 ## See also
 
 * https://github.com/sfomuseum/go-www-show
+* https://github.com/sfomuseum/protomaps-leaflet
