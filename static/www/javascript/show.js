@@ -156,7 +156,7 @@ window.addEventListener("load", function load(event){
 		
 		var tile_layer = protomapsL.leafletLayer({
                     url: tile_url,
-		    theme: 'light',
+		    theme: 'show',
 		    // paintRules:PAINT_RULES,
 		    // labelRules:LABEL_RULES,
 		})
