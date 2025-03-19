@@ -57,7 +57,9 @@ Valid options are:
     	Enable verbose (debug) logging.
 ```	
 
-#### Example (raster)
+#### Examples
+
+##### Example (raster)
 
 ```
 $> ./bin/show \
@@ -71,7 +73,7 @@ Which, when you open `http://localhost:52722` in your web browser, would yield t
 
 ![](docs/images/go-pmtiles-show-raster.png)
 
-#### Example (vector)
+##### Example (vector)
 
 ```
 $> ./bin/show \
