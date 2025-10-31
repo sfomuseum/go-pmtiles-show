@@ -43,11 +43,18 @@ window.addEventListener("load", function load(event){
 			case "protomaps":
 			    
 			    var tile_url = cfg.tile_url;
-			    
-			    var tile_layer = protomapsL.leafletLayer({
+
+			    var pm_args = {
 				url: tile_url,
 				theme: cfg.protomaps.theme,
-			    })
+				flavor: cfg.protomaps.theme,				
+			    };
+			    
+			    if ("max_data_zoom" in map_cfg.protomaps){
+				pm_args.maxDataZoom = map_cfg.protomaps.max_data_zoom;
+			    }
+			    
+			    var tile_layer = protomapsL.leafletLayer(pm_args)
 			    
 			    tile_layer.addTo(map);
 			    break;
