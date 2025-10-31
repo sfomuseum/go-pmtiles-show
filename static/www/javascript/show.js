@@ -107,12 +107,16 @@ window.addEventListener("load", function load(event){
 	    for (label in site_cfg.vector_layers) {
 
 		var tile_url = site_cfg.vector_layers[label];
-
+		
 		// Important: The "show" theme is NOT part of the default protomaps/protomaps-leaflet package.
 		    
+		    console.debug("Add vector layer", label, tile_url);
+		
 		var tile_layer = protomapsL.leafletLayer({
                     url: tile_url,
-		    theme: 'show',
+		    theme: "light",
+		    flavor: "light",
+		    maxDataZoom: 14,
 		})
 
 		tile_layer.addTo(map);
