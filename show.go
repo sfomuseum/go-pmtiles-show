@@ -38,12 +38,13 @@ func RunWithOptions(ctx context.Context, opts *RunOptions) error {
 	mux := http.NewServeMux()
 
 	maps_opts := &maps.AssignMapConfigHandlerOptions{
-		MapProvider:       opts.MapProvider,
-		MapTileURI:        opts.MapTileURI,
-		InitialView:       opts.InitialView,
-		LeafletStyle:      opts.LeafletStyle,
-		LeafletPointStyle: opts.LeafletPointStyle,
-		ProtomapsTheme:    opts.ProtomapsTheme,
+		MapProvider:          opts.MapProvider,
+		MapTileURI:           opts.MapTileURI,
+		InitialView:          opts.InitialView,
+		LeafletStyle:         opts.LeafletStyle,
+		LeafletPointStyle:    opts.LeafletPointStyle,
+		ProtomapsTheme:       opts.ProtomapsTheme,
+		ProtomapsMaxDataZoom: opts.ProtomapsMaxDataZoom,
 	}
 
 	err := maps.AssignMapConfigHandler(maps_opts, mux, "/map.json")
