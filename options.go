@@ -16,6 +16,7 @@ type RunOptions struct {
 	LeafletStyle      string
 	LeafletPointStyle string
 	ProtomapsTheme    string
+	ProtomapsMaxDataZoom int
 	RasterLayers      map[string]string `json:"raster_layers,omitempty"`
 	VectorLayers      map[string]string `json:"vector_layers,omitempty"`
 	Port              int
@@ -48,6 +49,7 @@ func RunOptionsFromFlagSet(ctx context.Context, fs *flag.FlagSet) (*RunOptions, 
 		LeafletStyle:      leaflet_style,
 		LeafletPointStyle: leaflet_point_style,
 		ProtomapsTheme:    protomaps_theme,
+		ProtomapsMaxDataZoom: protomaps_max_data_zoom,
 		InitialView:       initial_view,
 		RasterLayers:      raster_layers,
 		VectorLayers:      vector_layers,

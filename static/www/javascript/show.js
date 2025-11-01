@@ -43,11 +43,18 @@ window.addEventListener("load", function load(event){
 			case "protomaps":
 			    
 			    var tile_url = cfg.tile_url;
-			    
-			    var tile_layer = protomapsL.leafletLayer({
+
+			    var pm_args = {
 				url: tile_url,
 				theme: cfg.protomaps.theme,
-			    })
+				flavor: cfg.protomaps.theme,				
+			    };
+			    
+			    if ("max_data_zoom" in map_cfg.protomaps){
+				pm_args.maxDataZoom = map_cfg.protomaps.max_data_zoom;
+			    }
+			    
+			    var tile_layer = protomapsL.leafletLayer(pm_args)
 			    
 			    tile_layer.addTo(map);
 			    break;
@@ -100,12 +107,13 @@ window.addEventListener("load", function load(event){
 	    for (label in site_cfg.vector_layers) {
 
 		var tile_url = site_cfg.vector_layers[label];
-
-		// Important: The "show" theme is NOT part of the default protomaps/protomaps-leaflet package.
-		    
+		console.debug("Add vector layer", label, tile_url);
+		
 		var tile_layer = protomapsL.leafletLayer({
                     url: tile_url,
-		    theme: 'show',
+		    theme: "light",
+		    flavor: "light",
+		    maxDataZoom: 14,
 		})
 
 		tile_layer.addTo(map);
