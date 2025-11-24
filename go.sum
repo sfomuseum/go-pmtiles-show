@@ -1,11 +1,11 @@
-github.com/aaronland/go-http-maps/v2 v2.3.0 h1:xp5LUM0Wo0lSEUN/WWZeYNjyp7H+TxGRw5aKjfeOx3A=
-github.com/aaronland/go-http-maps/v2 v2.3.0/go.mod h1:2iK8mL62rgujrLUa3Thq45G5z6eY6ym8OSNKfEvRiDQ=
+github.com/aaronland/go-http-maps/v2 v2.4.0 h1:anzYkV96VfngNjFJFOx3gn7f75T1QRRfd9fyRz0q0Jk=
+github.com/aaronland/go-http-maps/v2 v2.4.0/go.mod h1:2iK8mL62rgujrLUa3Thq45G5z6eY6ym8OSNKfEvRiDQ=
 github.com/aaronland/go-roster v1.0.0 h1:FRDGrTqsYySKjWnAhbBGXyeGlI/o5/t9FZYCbUmyQtI=
 github.com/aaronland/go-roster v1.0.0/go.mod h1:KIsYZgrJlAsyb9LsXSCvlqvbcCBVjCSqcQiZx42i9ro=
 github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c h1:+mdjkGKdHQG3305AYmdv1U2eRNDiU2ErMBj1gwrq8eQ=
 github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c/go.mod h1:7rwL4CYBLnjLxUqIJNnCWiEdr3bn6IUYi15bNlnbCCU=
-github.com/sfomuseum/go-flags v0.11.0 h1:HmMm5DgLxgz8iaNsvJ79dyRXjuAyX/fruqkBeHmopL0=
-github.com/sfomuseum/go-flags v0.11.0/go.mod h1:cUTByyudaM9d+iHwxsEpyYHemWVOGL/bqTRPIvydiC8=
+github.com/sfomuseum/go-flags v0.12.1 h1:xvg3iEz510JPr9ItPxOOF2C12JnlplodT1V/1Ty7Pg8=
+github.com/sfomuseum/go-flags v0.12.1/go.mod h1:cUTByyudaM9d+iHwxsEpyYHemWVOGL/bqTRPIvydiC8=
 github.com/sfomuseum/go-www-show/v2 v2.0.0 h1:tHyhky1Uam2D9WbQOzdVqu3cAe9V39O67/rC0m1LLK4=
 github.com/sfomuseum/go-www-show/v2 v2.0.0/go.mod h1:LOUt8PTCL4/fDeznDJRfo7KlyOMj/IzTSwBvoGcg5sI=
 github.com/webview/webview_go v0.0.0-20240831120633-6173450d4dd6 h1:VQpB2SpK88C6B5lPHTuSZKb2Qee1QWwiFlC5CKY4AW0=

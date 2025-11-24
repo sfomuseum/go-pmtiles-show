@@ -3,8 +3,8 @@ module github.com/sfomuseum/go-pmtiles-show
 go 1.24.0
 
 require (
-	github.com/aaronland/go-http-maps/v2 v2.3.0
-	github.com/sfomuseum/go-flags v0.11.0
+	github.com/aaronland/go-http-maps/v2 v2.4.0
+	github.com/sfomuseum/go-flags v0.12.1
 	github.com/sfomuseum/go-www-show/v2 v2.0.0
 )
 
