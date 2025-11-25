@@ -7,10 +7,14 @@ cli:
 raster:
 	go run cmd/show/main.go \
 		-initial-view -122.408061,37.601617,-122.354907,37.640167 \
-		-raster test=fixtures/1930-raster.pmtiles
+		-raster sfo=fixtures/1930-raster.pmtiles
+
+raster-remote:
+	go run cmd/show/main.go \
+		-initial-view -122.408061,37.601617,-122.354907,37.640167 \
+		-raster sfo=https://static.sfomuseum.org/aerial/2025.pmtiles
 
 vector:
 	go run cmd/show/main.go \
 		-initial-view -122.408061,37.601617,-122.354907,37.640167 \
 		-vector sfo=fixtures/sfo.pmtiles
-

@@ -89,6 +89,22 @@ Which, when you open `http://localhost:52722` in your web browser, would yield t
 
 As of this writing there is only a single default style for (PMTiles) vector layers. It is [a fork](https://github.com/sfomuseum/protomaps-leaflet) of the default `light` style which has been updated to have a transparent background for areas where there is no tile data. The determination of which areas are considered to have tile data, as seen in the screenshot above, is determined by Protomaps and changes depending on the zoom level.
 
+##### Example (remote data)
+
+If the path component of the a `-raster` or `-vector` flag starts with "http" it will be assumed that the PMTiles database in question is hosted on a remote server and fetch the data from there. For example:
+
+```
+$> make raster-remote
+go run cmd/show/main.go \
+		-initial-view -122.408061,37.601617,-122.354907,37.640167 \
+		-raster sfo=https://static.sfomuseum.org/aerial/2025.pmtiles
+2025/11/25 12:25:15 INFO Server is ready and features are viewable url=http://localhost:49294
+```
+
+Which, when you open `http://localhost:49294` in your web browser, would yield this:
+
+![](docs/images/go-pmtiles-show-raster-remote.png)
+
 ## See also
 
 * https://github.com/sfomuseum/go-www-show

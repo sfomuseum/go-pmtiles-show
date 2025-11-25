@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log/slog"
 	"net/http"
+	"strings"
 
 	"github.com/aaronland/go-http-maps/v2"
 	"github.com/sfomuseum/go-pmtiles-show/static/www"
@@ -38,13 +39,13 @@ func RunWithOptions(ctx context.Context, opts *RunOptions) error {
 	mux := http.NewServeMux()
 
 	maps_opts := &maps.AssignMapConfigHandlerOptions{
-		MapProvider:       opts.MapProvider,
-		MapTileURI:        opts.MapTileURI,
-		InitialView:       opts.InitialView,
-		LeafletStyle:      opts.LeafletStyle,
-		LeafletPointStyle: opts.LeafletPointStyle,
-		ProtomapsTheme:    opts.ProtomapsTheme,
-		ProtomapsMaxDataZoom:    opts.ProtomapsMaxDataZoom,		
+		MapProvider:          opts.MapProvider,
+		MapTileURI:           opts.MapTileURI,
+		InitialView:          opts.InitialView,
+		LeafletStyle:         opts.LeafletStyle,
+		LeafletPointStyle:    opts.LeafletPointStyle,
+		ProtomapsTheme:       opts.ProtomapsTheme,
+		ProtomapsMaxDataZoom: opts.ProtomapsMaxDataZoom,
 	}
 
 	err := maps.AssignMapConfigHandler(maps_opts, mux, "/map.json")
@@ -62,26 +63,34 @@ func RunWithOptions(ctx context.Context, opts *RunOptions) error {
 
 	for label, path := range opts.RasterLayers {
 
-		mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
+		if strings.HasPrefix(path, "http") {
+			cfg.RasterLayers[label] = path
+		} else {
+			mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
 
-		if err != nil {
-			return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
+			if err != nil {
+				return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
+			}
+
+			mux.Handle(mux_url, mux_handler)
+			cfg.RasterLayers[label] = mux_url
 		}
-
-		mux.Handle(mux_url, mux_handler)
-		cfg.RasterLayers[label] = mux_url
 	}
 
 	for label, path := range opts.VectorLayers {
 
-		mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
+		if strings.HasPrefix(path, "http") {
+			cfg.VectorLayers[label] = path
+		} else {
+			mux_url, mux_handler, err := maps.ProtomapsFileHandlerFromPath(path, "")
 
-		if err != nil {
-			return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
+			if err != nil {
+				return fmt.Errorf("Failed to create protomaps handler for %s, %w", path, err)
+			}
+
+			mux.Handle(mux_url, mux_handler)
+			cfg.VectorLayers[label] = mux_url
 		}
-
-		mux.Handle(mux_url, mux_handler)
-		cfg.VectorLayers[label] = mux_url
 	}
 
 	cfg_handler := ConfigHandler(cfg)
