@@ -10,18 +10,18 @@ import (
 )
 
 type RunOptions struct {
-	MapProvider       string
-	MapTileURI        string
-	InitialView       string
-	LeafletStyle      string
-	LeafletPointStyle string
-	ProtomapsTheme    string
+	MapProvider          string
+	MapTileURI           string
+	InitialView          string
+	LeafletStyle         string
+	LeafletPointStyle    string
+	ProtomapsTheme       string
 	ProtomapsMaxDataZoom int
-	RasterLayers      map[string]string `json:"raster_layers,omitempty"`
-	VectorLayers      map[string]string `json:"vector_layers,omitempty"`
-	Port              int
-	Browser           www_show.Browser
-	Verbose           bool
+	RasterLayers         map[string]string `json:"raster_layers,omitempty"`
+	VectorLayers         map[string]string `json:"vector_layers,omitempty"`
+	Port                 int
+	Browser              www_show.Browser
+	Verbose              bool
 }
 
 func RunOptionsFromFlagSet(ctx context.Context, fs *flag.FlagSet) (*RunOptions, error) {
@@ -44,17 +44,17 @@ func RunOptionsFromFlagSet(ctx context.Context, fs *flag.FlagSet) (*RunOptions, 
 	}
 
 	opts := &RunOptions{
-		MapProvider:       map_provider,
-		MapTileURI:        map_tile_uri,
-		LeafletStyle:      leaflet_style,
-		LeafletPointStyle: leaflet_point_style,
-		ProtomapsTheme:    protomaps_theme,
+		MapProvider:          map_provider,
+		MapTileURI:           map_tile_uri,
+		LeafletStyle:         leaflet_style,
+		LeafletPointStyle:    leaflet_point_style,
+		ProtomapsTheme:       protomaps_theme,
 		ProtomapsMaxDataZoom: protomaps_max_data_zoom,
-		InitialView:       initial_view,
-		RasterLayers:      raster_layers,
-		VectorLayers:      vector_layers,
-		Port:              port,
-		Verbose:           verbose,
+		InitialView:          initial_view,
+		RasterLayers:         raster_layers,
+		VectorLayers:         vector_layers,
+		Port:                 port,
+		Verbose:              verbose,
 	}
 
 	br, err := www_show.NewBrowser(ctx, browser_uri)
